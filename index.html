@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SimplyClear</title><meta name="theme-color" content="#111318"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/icon-192.png"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<aside class="sidebar" id="sidebar">
+  <div class="brand-row"><div class="brand">◉ <span>My Space</span></div><button id="collapseSidebar" class="icon-btn" title="Collapse sidebar">«</button></div>
+  <button class="nav active" data-view="home"><b>⌂</b><span>Home</span></button>
+  <button class="nav" data-view="planner" data-period="daily"><b>☼</b><span>Daily</span></button>
+  <button class="nav" data-view="planner" data-period="weekly"><b>▣</b><span>Weekly</span></button>
+  <button class="nav" data-view="planner" data-period="monthly"><b>▦</b><span>Monthly</span></button>
+  <button class="nav" data-view="planner" data-period="quarterly"><b>▤</b><span>Quarterly</span></button>
+  <button class="nav" data-view="upcoming"><b>◷</b><span>Upcoming</span></button>
+  <button class="nav" data-view="ideas"><b>✦</b><span>Ideas</span></button>
+  <div class="side-title"><span>PROJECTS</span><button id="sideAddProject">＋</button></div><div id="projectNav"></div>
+  <div class="side-title"><span>LIFE</span></div>
+  <button class="nav" data-view="fitness"><b>⌁</b><span>Fitness</span></button>
+  <button class="nav" data-view="career"><b>▣</b><span>Career</span></button>
+  <div class="side-bottom"><button class="nav" data-view="archive"><b>□</b><span>Archive</span></button><button class="nav" data-view="settings"><b>⚙</b><span>Settings</span></button></div>
+</aside>
+<main class="main">
+<header class="top-header">
+  <div class="ayat-wrap" title="A locally bundled selection; changes every hour">
+    <div id="ayatText" class="ayat-text">“With hardship comes ease.”</div>
+    <div class="ayat-meta"><span id="ayatRef">Qur'an 94:6</span><span id="ayatTimer" class="muted small"></span></div>
+  </div>
+  <div id="pageTitle" class="page-label">Home</div>
+  <div class="header-actions"><button id="searchBtn" class="ghost">⌕ Search <kbd>Ctrl K</kbd></button><button id="quickBtn">＋ Add</button><button id="theme" class="ghost" title="Theme">◐</button></div>
+</header>
+
+<section id="view-home" class="view active">
+  <section class="quick-links-bar" id="quickLinksBar"></section>
+  <div class="homegrid top-grid">
+    <section class="panel"><div class="ph"><h2>Top 3</h2><span id="topCount"></span></div><div id="top" class="simple-list"></div></section>
+    <section class="panel"><div class="ph"><h2>Today</h2><span id="todayCount"></span></div><div id="today" class="simple-list"></div></section>
+    <section class="panel"><div class="ph"><h2>Upcoming</h2><button class="link-btn" id="seeUpcoming">See all</button></div><div id="homeUpcoming" class="timeline compact"></div></section>
+  </div>
+  <section class="goal-summary panel" data-summary="monthly"><button class="summary-head"><span><i class="goal-dot default-purple"></i><strong>Monthly goals</strong><em id="monthlyGoalCount">0</em></span><span><small id="monthlyAvg">0% avg progress</small>⌄</span></button><div id="monthlySummaryBody" class="summary-body"></div></section>
+  <section class="goal-summary panel" data-summary="quarterly"><button class="summary-head"><span><i class="goal-dot default-orange"></i><strong>Quarterly goals</strong><em id="quarterlyGoalCount">0</em></span><span><small id="quarterlyAvg">0% avg progress</small>⌄</span></button><div id="quarterlySummaryBody" class="summary-body"></div></section>
+  <section class="panel"><div class="ph"><h2>Project pulse</h2></div><div id="projectPulse"></div></section>
+  <section class="panel home-daily-workspace">
+    <div class="ph"><div><h2>Daily workspace</h2><span class="muted small">Notes, goals and habits for today</span></div><button id="openDailyView" class="ghost">Open Daily →</button></div>
+    <div class="home-daily-grid">
+      <div class="mini-section"><div class="mini-head"><strong>Daily notes</strong><span id="homeDailyDate" class="muted small"></span></div><textarea id="homeDailyNote" class="home-note suggestable" placeholder="Thoughts, reminders, what happened today…"></textarea></div>
+      <div class="mini-section"><div class="mini-head"><strong>Daily goals</strong><button id="homeAddDailyGoal" class="text-action">+ Goal</button></div><div id="homeDailyGoals" class="goal-list mini-goals"></div></div>
+      <div class="mini-section"><div class="mini-head"><strong>Habit tracker</strong><button id="homeAddHabit" class="text-action">+ Habit</button></div><div id="homeHabitTracker"></div></div>
+    </div>
+  </section>
+</section>
+
+<section id="view-planner" class="view"><div id="plannerContent"></div></section>
+<section id="view-project" class="view"><div id="projectWorkspace"></div></section>
+<section id="view-fitness" class="view"><div class="section-tabs"><button class="sub active" data-fit="overview">Overview</button><button class="sub" data-fit="weekly">Weekly</button><button class="sub" data-fit="monthly">Monthly</button><button class="sub" data-fit="notes">Notes</button></div><div id="fitnessContent"></div></section>
+<section id="view-career" class="view"><section class="panel"><div class="ph"><h2>Career</h2><span class="muted small">Applications, interviews, assessments</span></div><textarea id="career" class="big-note suggestable" spellcheck="true"></textarea></section></section>
+<section id="view-ideas" class="view"><section class="panel"><div class="ph"><div><h2>Ideas inbox</h2><p class="muted small">Capture first. Decide later.</p></div></div><div class="capture"><input id="ideaInput" placeholder="New idea…"><button id="ideaAdd">Add idea</button></div><div id="ideaList"></div></section></section>
+<section id="view-upcoming" class="view"><section class="panel"><h2>Upcoming</h2><div id="upcomingList" class="timeline"></div></section></section>
+<section id="view-archive" class="view"><section class="panel"><h2>Archive</h2><div id="archiveList"></div></section></section>
+<section id="view-settings" class="view"><section class="panel settings"><h2>Settings & data</h2><div class="setting-row"><div><strong>Backup</strong><div class="muted small">Tasks, goals, projects, notes, fitness and settings.</div></div><div><button id="exportData">Export JSON</button><button id="importData" class="ghost">Import JSON</button><input id="importFile" type="file" accept="application/json" hidden></div></div><div class="setting-row"><div><strong>Density</strong></div><select id="density"><option value="comfortable">Comfortable</option><option value="compact">Compact</option></select></div><div class="setting-row cloud-settings"><div><strong>Cloud sync</strong><div class="muted small">Optional Supabase sync for the same dashboard on every device.</div></div><div class="cloud-grid"><label>Project URL<input id="cloudUrl" placeholder="https://xxxxx.supabase.co"></label><label>Anon key<input id="cloudAnonKey" type="password" placeholder="Supabase anon key"></label><label>Email<input id="cloudEmail" type="email" placeholder="you@example.com"></label></div><div class="cloud-actions"><button id="saveCloudConfig" class="ghost">Save settings</button><button id="cloudSignIn">Email me a sign-in link</button><button id="cloudSyncNow" class="ghost" disabled>Sync now</button><button id="cloudSignOut" class="ghost" disabled>Sign out</button><span id="cloudStatus" class="muted small">Cloud not configured</span></div></div><div class="setting-row"><div><strong>Install app</strong><div class="muted small">Install SimplyClear on desktop or add it to your phone home screen.</div></div><button id="installPwa" class="ghost" disabled>Install SimplyClear</button></div><div class="setting-row"><div><strong>Data schema</strong></div><code id="schemaVersion"></code></div><div class="setting-row danger-zone"><div><strong>Reset dashboard</strong><div class="muted small">Export first.</div></div><button id="resetData" class="danger">Reset</button></div></section></section>
+</main>
+
+<div id="suggestions" class="suggestions" hidden></div>
+
+<dialog id="quickDialog"><form method="dialog" id="quickForm"><div class="modal-head"><h2>Quick add</h2><button value="cancel" class="icon">×</button></div><label>What?<input id="quickInput" class="suggestable" required placeholder="Add something…"></label><label>Add to<select id="quickBucket"><option value="today">Today</option><option value="top">Top 3</option><option value="daily">Daily tasks</option><option value="weekly">Weekly tasks</option><option value="monthly">Monthly tasks</option><option value="quarterly">Quarterly tasks</option><option value="inbox">Inbox</option><option value="idea">Idea</option></select></label><div class="modal-actions"><span></span><button value="cancel" class="ghost">Cancel</button><button type="submit">Add</button></div></form></dialog>
+
+<dialog id="linkDialog"><form method="dialog" id="linkForm"><div class="modal-head"><h2 id="linkHeading">Quick link</h2><button value="cancel" class="icon">×</button></div><input type="hidden" id="linkId"><label>Name<input id="linkName" required></label><label>URL<input id="linkUrl" required placeholder="https://..."></label><div class="modal-actions"><button type="button" id="deleteLink" class="danger">Delete</button><span></span><button value="cancel" class="ghost">Cancel</button><button type="submit">Save link</button></div></form></dialog>
+<dialog id="goalDialog"><form method="dialog" id="goalForm"><div class="modal-head"><h2 id="goalHeading">Goal</h2><button value="cancel" class="icon">×</button></div><input type="hidden" id="goalId"><input type="hidden" id="goalPeriod"><label>Goal<input id="goalTitle" class="suggestable" required></label><div class="formgrid"><label>Progress %<input id="goalProgress" type="number" min="0" max="100" value="0"></label><label id="goalDeadlineWrap">Time limit<input id="goalDeadline" type="date"></label></div><label>Color<div class="color-picker" id="goalColors"></div><input id="goalColorCustom" type="color" value="#8b5cf6" title="Custom color"></label><label>Milestones <span class="muted small">one per line; use [x] for completed</span><textarea id="goalMilestones" rows="5" placeholder="[x] First milestone\n[ ] Next milestone"></textarea></label><label>Notes<textarea id="goalNotes" class="suggestable" rows="4"></textarea></label><div class="modal-actions"><button type="button" id="deleteGoal" class="danger">Delete</button><span></span><button value="cancel" class="ghost">Cancel</button><button type="submit">Save goal</button></div></form></dialog>
+
+<dialog id="ticketDialog"><form method="dialog" id="ticketForm"><div class="modal-head"><h2 id="ticketHeading">Ticket</h2><button value="cancel" class="icon">×</button></div><input type="hidden" id="ticketProject"><input type="hidden" id="ticketId"><label>Title<input id="ticketTitle" class="suggestable" required></label><div class="formgrid"><label>Status<select id="ticketStatus"><option value="backlog">Backlog</option><option value="progress">In progress</option><option value="blocked">Blocked</option><option value="done">Done</option></select></label><label>Priority<select id="ticketPriority"><option>Low</option><option selected>Medium</option><option>High</option></select></label><label>Due date<input id="ticketDue" type="date"></label><label id="blockedWrap">Blocked by<input id="ticketBlocked" class="suggestable"></label></div><label>Tags<input id="ticketTags" placeholder="research, code, buy"></label><label>Notes<textarea id="ticketNotes" class="suggestable" rows="7"></textarea></label><label>Checklist <span class="muted small">one per line; [x] completed</span><textarea id="ticketChecklist" rows="5"></textarea></label><div class="modal-actions"><button type="button" id="deleteTicket" class="danger">Delete</button><span></span><button value="cancel" class="ghost">Cancel</button><button type="submit">Save ticket</button></div></form></dialog>
+<dialog id="searchDialog"><div class="searchbox"><input id="globalSearch" placeholder="Search everything…" autocomplete="off"><div id="searchResults"></div></div></dialog>
+<script src="app.js"></script>
+</body></html>
